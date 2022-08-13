@@ -10,7 +10,7 @@ let UP = 1;
 
 //// GAME PREFERENCES ////
 let DT = 0.050; // Tick time in seconds
-let CELL_SIZE = 2;
+let CELL_SIZE = 4;
 let TEXTURE_SIZE = 2;
 let APPLES_APPEARANCE_PROBABILITY = 0.0001;
 
@@ -24,6 +24,11 @@ let SIZE_Y = 20;
 
 // Music
 let VOLUME = 1;
+
+// Some govnocode
+let CLICKED = false;
+let CLICKED_X = 0;
+let CLICKED_Y = 0;
 
 
 //// DRAW PREFERENCES ////

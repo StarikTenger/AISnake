@@ -11,8 +11,8 @@ myAudio.play();
 function step() {
     //myAudio.volume = VOLUME;
     //myAudio.play();
-    game.step();
     draw.draw(game);
+    game.step();
 
     if (KEY_MINUS) {
         VOLUME = Math.max(0, VOLUME - 0.1);
