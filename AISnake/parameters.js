@@ -9,8 +9,6 @@ let CELL_SIZE = 4;
 let TEXTURE_SIZE = 2;
 let APPLES_APPEARANCE_PROBABILITY = 0.0001;
 
-let CELL = { void: 'void', apple: 'apple', wall: 'wall' };
-
 let EPS = 0.0001;
 
 // Map parameters

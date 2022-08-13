@@ -9,18 +9,36 @@ class Snake {
         this.body.push(new SnakeBlock(new Vec2(0, 1), RIGHT));
     }
 
-    check_obstacle_front(pos) {
-        
+    head_direction() {
+        return this.body[0].direction;
+    }
+
+    head_pos() {
+        return this.body[0].pos;
+    }
+
+    pos_relative(pos) {
+        let front = DIRECTION_VECTORS[this.head_direction()];
+        let right = DIRECTION_VECTORS[shift_clockwise(this.head_direction())];
+        let pos_abs = plus(
+            mult(front, pos.y),
+            mult(right, pos.x)
+        );
+        pos_abs = plus(pos_abs, this.head_pos());
+        //console.log(pos_abs);
+        return pos_abs;
+    }
+
+    check_obstacle_relative(pos) {
+        return game.grid.check_obstacle(
+            this.pos_relative(pos)
+        )
     }
 
     // Moves snake by a single cell
     move() {
         // Turn if there is a border ahead
-        if (this.body[0].pos.x + DIRECTION_VECTORS[this.body[0].direction].x < 0 ||
-            this.body[0].pos.x + DIRECTION_VECTORS[this.body[0].direction].x >= SIZE_X ||
-            this.body[0].pos.y + DIRECTION_VECTORS[this.body[0].direction].y < 0 ||
-            this.body[0].pos.y + DIRECTION_VECTORS[this.body[0].direction].y >= SIZE_Y) {
-            alert("turn");
+        if (this.check_obstacle_relative(new Vec2(0, 1))) {
             this.turn_left();
         }
         // Moving
@@ -38,11 +56,11 @@ class Snake {
     }
 
     turn_right() {
-        this.body[0].direction = (this.body[0].direction + 1) % 4;
+        this.body[0].direction = shift_clockwise(this.body[0].direction)
     }
 
     turn_left() {
-        this.body[0].direction = (this.body[0].direction + 4 - 1) % 4;
+        this.body[0].direction = shift_counterclockwise(this.body[0].direction)
     }
 
     draw() {
