@@ -87,7 +87,10 @@ class Snake {
             }
         }
 
-        // TODO: check new_head for collisions
+        // Check for collision
+        if (game.grid.get(this.head_pos()) != CELL.void) {
+            alert("collision");
+        }
     }
 
     turn_right() {
