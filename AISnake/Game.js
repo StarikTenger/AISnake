@@ -18,7 +18,7 @@ class Game {
 
     tick() {
         for (let i = 0; i < this.tickable.length; i++) {
-            this.tickable[i].move();
+            this.tickable[i].tick();
         }
     }
 }

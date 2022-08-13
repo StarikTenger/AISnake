@@ -35,8 +35,12 @@ class Snake {
         )
     }
 
-    // Moves snake by a single cell
-    move() {
+    tick() {
+        this.think();
+        this.move();
+    }
+
+    think() {
         // Turn if there is a border ahead
         if (this.check_obstacle_relative(DIRECTION_VECTORS[UP])) {
             if (this.check_obstacle_relative(DIRECTION_VECTORS[LEFT]))
@@ -50,6 +54,10 @@ class Snake {
                     this.turn_right();
             }
         }
+    }
+
+    // Moves snake by a single cell
+    move() {
         // Moving
         for (let i = 0; i < this.body.length; i++) {
             this.body[i].pos.x += DIRECTION_VECTORS[this.body[i].direction].x;
