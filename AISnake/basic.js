@@ -33,6 +33,11 @@ function dist(a, b) {
     return Math.abs(x) + Math.abs(y);
 }
 
+// clone
+function clone() {
+    return new Vec2(this.x, this.y);
+}
+
 //// RANDOM ////
 
 function random(min, max) {
