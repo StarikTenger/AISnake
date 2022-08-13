@@ -21,7 +21,7 @@ class Snake {
         let front = DIRECTION_VECTORS[this.head_direction()];
         let right = DIRECTION_VECTORS[shift_clockwise(this.head_direction())];
         let pos_abs = plus(
-            mult(front, pos.y),
+            mult(front, -pos.y),
             mult(right, pos.x)
         );
         pos_abs = plus(pos_abs, this.head_pos());
@@ -38,8 +38,17 @@ class Snake {
     // Moves snake by a single cell
     move() {
         // Turn if there is a border ahead
-        if (this.check_obstacle_relative(new Vec2(0, 1))) {
-            this.turn_left();
+        if (this.check_obstacle_relative(DIRECTION_VECTORS[UP])) {
+            if (this.check_obstacle_relative(DIRECTION_VECTORS[LEFT]))
+                this.turn_right();
+            else if (this.check_obstacle_relative(DIRECTION_VECTORS[RIGHT]))
+                this.turn_left();
+            else {
+                if (random(0,1))
+                    this.turn_left();
+                else
+                    this.turn_right();
+            }
         }
         // Moving
         for (let i = 0; i < this.body.length; i++) {
