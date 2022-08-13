@@ -10,9 +10,9 @@ let UP = 1;
 
 //// GAME PREFERENCES ////
 let DT = 0.050; // Tick time in seconds
-let CELL_SIZE = 8;
-let TEXTURE_SIZE = 8;
-let APPLES_APPEARANCE_PROBABILITY = 0.02;
+let CELL_SIZE = 2;
+let TEXTURE_SIZE = 2;
+let APPLES_APPEARANCE_PROBABILITY = 0.0001;
 
 let CELL = { void: 'void', apple: 'apple', wall: 'wall' };
 
