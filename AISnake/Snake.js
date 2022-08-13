@@ -36,7 +36,15 @@ class Snake {
     }
 
     tick() {
+        // Thinking
         this.think();
+
+        // Eating
+        if (game.grid.get(this.head_pos()) == CELL.apple) {
+            this.grow();
+        }
+
+        // Moving
         this.move();
     }
 
@@ -56,6 +64,14 @@ class Snake {
         }
     }
 
+    grow() {
+        this.body.push(this.body[this.body.length - 1].clone())
+        this.body[this.body.length - 1].pos =  minus(
+                this.body[this.body.length - 1].pos,
+                DIRECTION_VECTORS[this.body[this.body.length - 1].direction]
+            )
+    }
+
     // Moves snake by a single cell
     move() {
         // Moving
@@ -69,6 +85,7 @@ class Snake {
                 this.body[i].direction = this.body[i - 1].direction;
             }
         }
+
         // TODO: check new_head for collisions
     }
 

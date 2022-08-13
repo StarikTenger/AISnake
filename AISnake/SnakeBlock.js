@@ -4,6 +4,6 @@ class SnakeBlock {
         this.direction = direction;
     }
     clone() {
-        return SnakeBlock(this.pos.clone(), this.direction);
+        return new SnakeBlock(this.pos.clone(), this.direction);
     }
 }
