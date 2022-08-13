@@ -5,7 +5,7 @@ class Draw {
        this.ctx = ctx;
 
        this.cam = new Vec2(0, 0); // Camera position
-       this.center = new Vec2(32, 27); // Screen center (здфнукы ы)
+       this.center = new Vec2(32, 32); // Screen center (здфнукы ы)
     }
 
     image(texture, x, y, w, h, flip) {
@@ -43,7 +43,7 @@ class Draw {
     draw(game) {
         // Focusing camera
         this.cam = game.player.pos;
-        this.center = new Vec2(32, 27);
+        this.center = new Vec2(32, 32);
     
         // Filling background
         this.ctx.fillStyle = "black";
