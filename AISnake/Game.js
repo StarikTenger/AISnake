@@ -3,14 +3,11 @@
 
 class Game {
     constructor() {
-        // Filling grid
-        this.grid = [];
-        for (let x = 0; x < SIZE_X; x++) {
-                this.grid.push([]);
-                for (let y = 0; y < SIZE_Y; y++) {
-                    this.grid[x].push(new Cell);
-                }
-        }        
+        this.grid = new Grid()
+    }
+
+    step() {
+        this.grid.step()
     }
 
     // Checks is the cell is in bounds
