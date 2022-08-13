@@ -24,12 +24,6 @@ class Grid {
         }, false);
     }
 
-    add_wall(x, y) {
-        if (x < SIZE_X && y < SIZE_Y && this.field[x][y] == 'void') {
-            this.field[x][y] = 'wall';
-        }
-    }
-
     get(pos) {
         // Field topology can be determined here
         // Now the filed is bordered
@@ -53,12 +47,21 @@ class Grid {
         );
     }
 
+    click_action(x, y) {
+        if (x < SIZE_X && y < SIZE_Y) {
+            if (this.field[x][y] == CELL.void) 
+                this.field[x][y] = CELL.wall;
+            else if (this.field[x][y] == CELL.wall) 
+                this.field[x][y] = CELL.void;
+        }
+    }
+
     step() {
         this.apple_num = 0;
         // Adding walls
         if (CLICKED) {
             CLICKED = false;
-            this.add_wall(CLICKED_X, CLICKED_Y);
+            this.click_action(CLICKED_X, CLICKED_Y);
         }
         for (let x = 0; x < SIZE_X; x++) {
             for (let y = 0; y < SIZE_Y; y++) {
