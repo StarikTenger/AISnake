@@ -12,7 +12,10 @@ class Deque {
         else (this.front = this.front.prev).next = undefined;
         return value;
     }
-    peekFront() { 
+    peekFront() {
+        return this.front;
+    }
+    peekFrontValue() { 
         return this.front && this.front.value;
     }
     addBack(value) {
@@ -26,6 +29,9 @@ class Deque {
         return value;
     }
     peekBack() { 
+        return this.back;
+    }
+    peekBackValue() { 
         return this.back && this.back.value;
     }
 }
