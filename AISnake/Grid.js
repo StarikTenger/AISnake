@@ -38,6 +38,14 @@ class Grid {
         return this.field[pos.x][pos.y];
     }
 
+    set(pos, value) {
+        // Field topology can be determined here
+        // Now the filed is bordered
+        if (pos.x < 0 || pos.y < 0 || pos.x >= SIZE_X || pos.y >= SIZE_Y)
+            return;
+        this.field[pos.x][pos.y] = value;
+    }
+
     check_obstacle(pos) {
         return (
             this.get(pos) == CELL.wall || 
