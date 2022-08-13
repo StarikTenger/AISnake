@@ -58,3 +58,23 @@ function normalRoll(min, max, iterations) { // gives value from min to max with 
     let roll = normalDistribution(-max + min, +max - min, iterations);
     return Math.abs(roll) + min;
 }
+
+//// DIRECTIONS ////
+let UP = 0;
+let RIGHT = 1;
+let DOWN = 2;
+let LEFT = 3;
+
+let DIRECTION_VECTORS = [];
+DIRECTION_VECTORS[UP]    = new Vec2( 0, -1),
+DIRECTION_VECTORS[RIGHT] = new Vec2( 1,  0),
+DIRECTION_VECTORS[DOWN]  = new Vec2( 0,  1),
+DIRECTION_VECTORS[LEFT]  = new Vec2(-1,  0)
+
+function shift_clockwise(dir) {
+    return (dir + 1) % 4;
+}
+
+function shift_counterclockwise(dir) {
+    return (dir + 4 - 1) % 4;
+}

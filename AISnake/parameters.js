@@ -1,22 +1,6 @@
 'use strict'
 
 //// CONSTANTS ////
-// Directions
-let NONE = 0;
-let UP = 1;
-let RIGHT = 2;
-let DOWN = 3;
-let LEFT = 4;
-
-let DIRECTIONS_CLOCKWISE = { UP: 0, RIGHT: 1, DOWN: 2, LEFT: 3 };
-
-let DIRECTION_VECTORS = [];
-DIRECTION_VECTORS[NONE]  = new Vec2( 0,  0);
-DIRECTION_VECTORS[UP]    = new Vec2( 0, -1),
-DIRECTION_VECTORS[RIGHT] = new Vec2( 1,  0),
-DIRECTION_VECTORS[DOWN]  = new Vec2( 0,  1),
-DIRECTION_VECTORS[LEFT]  = new Vec2(-1,  0)
-
 
 //// GAME PREFERENCES ////
 let DT = 0.050; // Tick time in seconds

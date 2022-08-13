@@ -2,27 +2,31 @@ class Snake {
     constructor() {
         // !HARDCODE!
         this.body = [];
-        this.body.push(new SnakeBlock(new Vec2(4, 1), DIRECTIONS_CLOCKWISE.RIGHT));
-        this.body.push(new SnakeBlock(new Vec2(3, 1), DIRECTIONS_CLOCKWISE.RIGHT));
-        this.body.push(new SnakeBlock(new Vec2(2, 1), DIRECTIONS_CLOCKWISE.RIGHT));
-        this.body.push(new SnakeBlock(new Vec2(1, 1), DIRECTIONS_CLOCKWISE.RIGHT));
-        this.body.push(new SnakeBlock(new Vec2(0, 1), DIRECTIONS_CLOCKWISE.RIGHT));
+        this.body.push(new SnakeBlock(new Vec2(4, 1), RIGHT));
+        this.body.push(new SnakeBlock(new Vec2(3, 1), RIGHT));
+        this.body.push(new SnakeBlock(new Vec2(2, 1), RIGHT));
+        this.body.push(new SnakeBlock(new Vec2(1, 1), RIGHT));
+        this.body.push(new SnakeBlock(new Vec2(0, 1), RIGHT));
+    }
+
+    check_obstacle_front(pos) {
+        
     }
 
     // Moves snake by a single cell
     move() {
         // Turn if there is a border ahead
-        if (this.body[0].pos.x + DIRECTION_VECTORS[this.body[0].direction + 1].x < 0 ||
-            this.body[0].pos.x + DIRECTION_VECTORS[this.body[0].direction + 1].x >= SIZE_X ||
-            this.body[0].pos.y + DIRECTION_VECTORS[this.body[0].direction + 1].y < 0 ||
-            this.body[0].pos.y + DIRECTION_VECTORS[this.body[0].direction + 1].y >= SIZE_Y) {
+        if (this.body[0].pos.x + DIRECTION_VECTORS[this.body[0].direction].x < 0 ||
+            this.body[0].pos.x + DIRECTION_VECTORS[this.body[0].direction].x >= SIZE_X ||
+            this.body[0].pos.y + DIRECTION_VECTORS[this.body[0].direction].y < 0 ||
+            this.body[0].pos.y + DIRECTION_VECTORS[this.body[0].direction].y >= SIZE_Y) {
             alert("turn");
             this.turn_left();
         }
         // Moving
         for (let i = 0; i < this.body.length; i++) {
-            this.body[i].pos.x += DIRECTION_VECTORS[this.body[i].direction + 1].x;
-            this.body[i].pos.y += DIRECTION_VECTORS[this.body[i].direction + 1].y;
+            this.body[i].pos.x += DIRECTION_VECTORS[this.body[i].direction].x;
+            this.body[i].pos.y += DIRECTION_VECTORS[this.body[i].direction].y;
         }
         // Changing the direction of all parts of the snake
         for (let i = this.body.length - 1; i >= 0; i--) {
