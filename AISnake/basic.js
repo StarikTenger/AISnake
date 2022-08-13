@@ -4,6 +4,11 @@ class Vec2 {
         this.x = x;
         this.y = y;
     }
+
+    // clone
+    clone() {
+        return new Vec2(this.x, this.y);
+    }
 }
 
 // +
@@ -31,11 +36,6 @@ function dist(a, b) {
     var x = a.x - b.x;
     var y = a.y - b.y;
     return Math.abs(x) + Math.abs(y);
-}
-
-// clone
-function clone() {
-    return new Vec2(this.x, this.y);
 }
 
 //// RANDOM ////
