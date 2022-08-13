@@ -1,5 +1,6 @@
 var game = new Game();
 var draw = new Draw(CTX);
+var step_count = 0;
 
 var myAudio = new Audio('music/main_theme.mp3'); 
 myAudio.addEventListener('ended', function() {
@@ -9,6 +10,11 @@ myAudio.addEventListener('ended', function() {
 myAudio.play();
 
 function step() {
+    step_count++;
+    if (step_count == TICK_STEPS_NUM) {
+        step_count = 0;
+        game.tick();
+    }
     //myAudio.volume = VOLUME;
     //myAudio.play();
     draw.draw(game);

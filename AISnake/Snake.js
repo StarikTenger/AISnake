@@ -2,53 +2,50 @@ class Snake {
     constructor() {
         // !HARDCODE!
         this.body = [];
-        this.body.push(new SnakeBlock(new Vec2(1, 1)));
-        this.body.push(new SnakeBlock(new Vec2(2, 1)));
-
-        // For turning
-        this.directions_clockwise = { UP: 0, RIGHT: 1, DOWN: 2, LEFT: 3 };
-        this.direction = this.directions_clockwise.RIGHT;
+        this.body.push(new SnakeBlock(new Vec2(4, 1), DIRECTIONS_CLOCKWISE.RIGHT));
+        this.body.push(new SnakeBlock(new Vec2(3, 1), DIRECTIONS_CLOCKWISE.RIGHT));
+        this.body.push(new SnakeBlock(new Vec2(2, 1), DIRECTIONS_CLOCKWISE.RIGHT));
+        this.body.push(new SnakeBlock(new Vec2(1, 1), DIRECTIONS_CLOCKWISE.RIGHT));
+        this.body.push(new SnakeBlock(new Vec2(0, 1), DIRECTIONS_CLOCKWISE.RIGHT));
     }
 
     // Moves snake by a single cell
     move() {
-        let x = 0;
-        let y = 0;
-        switch(this.direction) {
-            case this.directions_clockwise.UP:
-                y--;
-                break;
-            case this.directions_clockwise.DOWN:
-                y++;
-                break;
-            case this.directions_clockwise.RIGHT:
-                x++;
-                break;
-            case this.directions_clockwise.LEFT:
-                x--;
-                break;
+        // Turn if there is a border ahead
+        if (this.body[0].pos.x + DIRECTION_VECTORS[this.body[0].direction + 1].x < 0 ||
+            this.body[0].pos.x + DIRECTION_VECTORS[this.body[0].direction + 1].x >= SIZE_X ||
+            this.body[0].pos.y + DIRECTION_VECTORS[this.body[0].direction + 1].y < 0 ||
+            this.body[0].pos.y + DIRECTION_VECTORS[this.body[0].direction + 1].y >= SIZE_Y) {
+            alert("turn");
+            this.turn_left();
         }
-        if (Math.random() < 0.05) {
-            for (let i = 0; i < this.body.length; i++) {
-                this.body[i].pos.x += x;
-                this.body[i].pos.y += y;
+        // Moving
+        for (let i = 0; i < this.body.length; i++) {
+            this.body[i].pos.x += DIRECTION_VECTORS[this.body[i].direction + 1].x;
+            this.body[i].pos.y += DIRECTION_VECTORS[this.body[i].direction + 1].y;
+        }
+        // Changing the direction of all parts of the snake
+        for (let i = this.body.length - 1; i >= 0; i--) {
+            if (i != 0) {
+                this.body[i].direction = this.body[i - 1].direction;
             }
         }
         // TODO: check new_head for collisions
     }
 
     turn_right() {
-        this.direction = (this.direction + 1) % 4;
+        this.body[0].direction = (this.body[0].direction + 1) % 4;
     }
 
     turn_left() {
-        this.direction = (this.direction + 4 - 1) % 4;
+        this.body[0].direction = (this.body[0].direction + 4 - 1) % 4;
     }
 
     draw() {
         for (let i = 0; i < this.body.length; i++) {
             draw.rect(this.body[i].pos.x * CELL_SIZE, this.body[i].pos.y * CELL_SIZE, CELL_SIZE, CELL_SIZE, "green");
-            if (i == this.body.length - 1) {
+            // head
+            if (i == 0) {
                 draw.rect(this.body[i].pos.x * CELL_SIZE, this.body[i].pos.y * CELL_SIZE, CELL_SIZE, CELL_SIZE, "blue");
             }
         }

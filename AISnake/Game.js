@@ -12,8 +12,13 @@ class Game {
     step() {
         this.grid.step();
         for (let i = 0; i < this.tickable.length; i++) {
-            this.tickable[i].move();
             this.tickable[i].draw();
+        }
+    }
+
+    tick() {
+        for (let i = 0; i < this.tickable.length; i++) {
+            this.tickable[i].move();
         }
     }
 
