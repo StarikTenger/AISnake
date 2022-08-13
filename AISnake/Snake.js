@@ -2,27 +2,58 @@ class Snake {
     constructor() {
         // !HARDCODE!
         this.body = [];
-        this.body.push(new SnakeBlock(new Vec2(4, 1), DIRECTIONS_CLOCKWISE.RIGHT));
-        this.body.push(new SnakeBlock(new Vec2(3, 1), DIRECTIONS_CLOCKWISE.RIGHT));
-        this.body.push(new SnakeBlock(new Vec2(2, 1), DIRECTIONS_CLOCKWISE.RIGHT));
-        this.body.push(new SnakeBlock(new Vec2(1, 1), DIRECTIONS_CLOCKWISE.RIGHT));
-        this.body.push(new SnakeBlock(new Vec2(0, 1), DIRECTIONS_CLOCKWISE.RIGHT));
+        this.body.push(new SnakeBlock(new Vec2(4, 1), RIGHT));
+        this.body.push(new SnakeBlock(new Vec2(3, 1), RIGHT));
+        this.body.push(new SnakeBlock(new Vec2(2, 1), RIGHT));
+        this.body.push(new SnakeBlock(new Vec2(1, 1), RIGHT));
+        this.body.push(new SnakeBlock(new Vec2(0, 1), RIGHT));
+    }
+
+    head_direction() {
+        return this.body[0].direction;
+    }
+
+    head_pos() {
+        return this.body[0].pos;
+    }
+
+    pos_relative(pos) {
+        let front = DIRECTION_VECTORS[this.head_direction()];
+        let right = DIRECTION_VECTORS[shift_clockwise(this.head_direction())];
+        let pos_abs = plus(
+            mult(front, -pos.y),
+            mult(right, pos.x)
+        );
+        pos_abs = plus(pos_abs, this.head_pos());
+        //console.log(pos_abs);
+        return pos_abs;
+    }
+
+    check_obstacle_relative(pos) {
+        return game.grid.check_obstacle(
+            this.pos_relative(pos)
+        )
     }
 
     // Moves snake by a single cell
     move() {
         // Turn if there is a border ahead
-        if (this.body[0].pos.x + DIRECTION_VECTORS[this.body[0].direction + 1].x < 0 ||
-            this.body[0].pos.x + DIRECTION_VECTORS[this.body[0].direction + 1].x >= SIZE_X ||
-            this.body[0].pos.y + DIRECTION_VECTORS[this.body[0].direction + 1].y < 0 ||
-            this.body[0].pos.y + DIRECTION_VECTORS[this.body[0].direction + 1].y >= SIZE_Y) {
-            alert("turn");
-            this.turn_left();
+        if (this.check_obstacle_relative(DIRECTION_VECTORS[UP])) {
+            if (this.check_obstacle_relative(DIRECTION_VECTORS[LEFT]))
+                this.turn_right();
+            else if (this.check_obstacle_relative(DIRECTION_VECTORS[RIGHT]))
+                this.turn_left();
+            else {
+                if (random(0,1))
+                    this.turn_left();
+                else
+                    this.turn_right();
+            }
         }
         // Moving
         for (let i = 0; i < this.body.length; i++) {
-            this.body[i].pos.x += DIRECTION_VECTORS[this.body[i].direction + 1].x;
-            this.body[i].pos.y += DIRECTION_VECTORS[this.body[i].direction + 1].y;
+            this.body[i].pos.x += DIRECTION_VECTORS[this.body[i].direction].x;
+            this.body[i].pos.y += DIRECTION_VECTORS[this.body[i].direction].y;
         }
         // Changing the direction of all parts of the snake
         for (let i = this.body.length - 1; i >= 0; i--) {
@@ -34,11 +65,11 @@ class Snake {
     }
 
     turn_right() {
-        this.body[0].direction = (this.body[0].direction + 1) % 4;
+        this.body[0].direction = shift_clockwise(this.body[0].direction)
     }
 
     turn_left() {
-        this.body[0].direction = (this.body[0].direction + 4 - 1) % 4;
+        this.body[0].direction = shift_counterclockwise(this.body[0].direction)
     }
 
     draw() {

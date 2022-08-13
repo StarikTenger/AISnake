@@ -1,3 +1,5 @@
+let CELL = { void: 'void', apple: 'apple', wall: 'wall', snake: 'snake'};
+
 class Grid {
     constructor() {
         // Filling grid
@@ -26,6 +28,21 @@ class Grid {
         if (x < SIZE_X && y < SIZE_Y && this.field[x][y] == 'void') {
             this.field[x][y] = 'wall';
         }
+    }
+
+    get(pos) {
+        // Field topology can be determined here
+        // Now the filed is bordered
+        if (pos.x < 0 || pos.y < 0 || pos.x >= SIZE_X || pos.y >= SIZE_Y)
+            return CELL.wall;
+        return this.field[pos.x][pos.y];
+    }
+
+    check_obstacle(pos) {
+        return (
+            this.get(pos) == CELL.wall || 
+            this.get(pos) == CELL.snake
+        );
     }
 
     step() {
