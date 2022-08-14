@@ -72,13 +72,13 @@ class Grid {
                 // Drawing grid
                 switch(this.field[x][y]) {
                     case 'void':
-                        draw.rect(x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE, "black");
+                        draw.image(IMGS[0], x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE);
                         break;
                     case 'apple':
-                        draw.rect(x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE, "red");
+                        draw.image(IMGS[1], x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE);
                         break;
                     case 'wall':
-                        draw.rect(x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE, "white");
+                        draw.image(IMGS[2], x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE);
                         break;
                 }
             }
