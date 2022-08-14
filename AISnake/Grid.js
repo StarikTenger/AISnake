@@ -58,11 +58,6 @@ class Grid {
 
     step() {
         this.apple_num = 0;
-        // Adding walls
-        if (CLICKED) {
-            CLICKED = false;
-            this.click_action(CLICKED_X, CLICKED_Y);
-        }
         for (let x = 0; x < SIZE_X; x++) {
             for (let y = 0; y < SIZE_Y; y++) {
                 // Adding apples

@@ -17,6 +17,24 @@ class Snake {
         return this.body[0].pos;
     }
 
+    
+    divide(x, y) {
+        for (let i = 0; i < this.body.length; i++) {
+            if (x == this.body[i].pos.x && y == this.body[i].pos.y) {
+                let first_snake = new Snake();
+                for (let j = 0; j < i; j++) {
+                    first_snake.body.push(this.body[j]);   
+                }
+                let second_snake = new Snake();
+                for (let j = i + 1; j < this.body.length; j++) {
+                    second_snake.body.push(this.body[j]);
+                }
+                return [first_snake, second_snake];
+            }
+        }
+        return false;
+    }
+
     pos_relative(pos) {
         let front = DIRECTION_VECTORS[this.head_direction()];
         let right = DIRECTION_VECTORS[shift_clockwise(this.head_direction())];
@@ -89,7 +107,7 @@ class Snake {
 
         // Check for collision
         if (game.grid.get(this.head_pos()) != CELL.void) {
-            alert("collision");
+            //alert("collision");
         }
     }
 
