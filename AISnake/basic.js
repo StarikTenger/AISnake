@@ -38,6 +38,8 @@ function dist(a, b) {
     return Math.abs(x) + Math.abs(y);
 }
 
+let Vec2_ZERO = new Vec2(0, 0);
+
 //// RANDOM ////
 
 function random(min, max) {

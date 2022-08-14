@@ -75,6 +75,11 @@ class Snake {
 
     // Moves snake by a single cell
     move() {
+        // Remove shadow
+        game.grid.set(
+            this.body[this.body.length - 1].pos,
+            CELL.void);
+
         // Moving
         for (let i = 0; i < this.body.length; i++) {
             this.body[i].pos.x += DIRECTION_VECTORS[this.body[i].direction].x;
@@ -88,9 +93,14 @@ class Snake {
         }
 
         // Check for collision
-        if (game.grid.get(this.head_pos()) != CELL.void) {
+        if (this.check_obstacle_relative(Vec2_ZERO)) {
             alert("collision");
         }
+
+        // Set shadow
+        game.grid.set(
+            this.head_pos(),
+            CELL.snake)
     }
 
     turn_right() {

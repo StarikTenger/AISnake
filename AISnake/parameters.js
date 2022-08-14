@@ -3,7 +3,7 @@
 //// CONSTANTS ////
 
 //// GAME PREFERENCES ////
-let DT = 0.050; // Tick time in seconds
+let DT = 0.020; // Tick time in seconds
 let TICK_STEPS_NUM = 10; // number of steps in one step
 let CELL_SIZE = 4;
 let TEXTURE_SIZE = 2;
