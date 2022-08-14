@@ -48,10 +48,10 @@ function get_img(src) { // Load images
 }
 
 class AnimationHolder {
-    constructor(frames_names, cycle_time, repeating) {
+    constructor(path, extension, frame_cnt, cycle_time, repeating) {
         this.frames = []
-        for (let i = 0; i < frames_names.length; i++) {
-            this.frames.push(get_img(frames_names))
+        for (let i = 0; i < frame_cnt; i++) {
+            this.frames.push(get_img(path + "/" + i.toString() + "." + extension))
         }
 
         this.cycle_time = cycle_time
