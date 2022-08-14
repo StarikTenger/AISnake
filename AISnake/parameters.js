@@ -29,7 +29,6 @@ let CLICKED = false;
 let CLICKED_X = 0;
 let CLICKED_Y = 0;
 
-
 //// DRAW PREFERENCES ////
 // не ебу, зачем оно, но пусть будет
 let SCALE = 1; // 1 Cell in px
