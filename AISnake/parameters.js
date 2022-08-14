@@ -53,10 +53,11 @@ function getImg(src) { // Load images
 // Loading current imgs 
 // *saved just for examples*
 let IMG_DIRS = [
-    getImg("textures/up.png"),
-    getImg("textures/right.png"),
-    getImg("textures/down.png"),
-    getImg("textures/left.png")
+    getImg("textures/head.png"),
+    getImg("textures/body.png"),
+    getImg("textures/body_rot.png"),
+    getImg("textures/head_rot.png"),
+    getImg("textures/butt.png")
 ];
 
 let IMGS = [
