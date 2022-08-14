@@ -83,6 +83,16 @@ class Snake {
             )
     }
 
+    split(tail) {
+        let new_snake = new Snake();
+        for (let i = 0; i < tail; i++) {
+            let block = this.body.pop();
+            block.direction = (block.direction + 2) % 4;
+            new_snake.body.push(block);
+        }
+        game.tickable.push(new_snake);
+    }
+
     turn_right() {
         this.body[0].direction = shift_clockwise(this.body[0].direction)
     }
