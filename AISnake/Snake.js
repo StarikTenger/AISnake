@@ -91,6 +91,10 @@ class Snake {
                 this.body[this.body.length - 1].pos,
                 DIRECTION_VECTORS[this.body[this.body.length - 1].direction]
             )
+        // Set shadow
+        game.grid.set(
+            this.body[this.body.length - 1].pos,
+            CELL.snake)
     }
 
     split(tail) {
