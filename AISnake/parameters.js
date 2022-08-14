@@ -7,7 +7,10 @@ let DT = 0.020; // Tick time in seconds
 let TICK_STEPS_NUM = 10; // number of steps in one step
 let CELL_SIZE = 4;
 let TEXTURE_SIZE = 2;
-let APPLES_APPEARANCE_PROBABILITY = 0.0001;
+let APPLES_APPEARANCE_PROBABILITY = 0.01;
+
+let SNAKE_CRITICAL_LENGTH = 10;
+let SNAKE_TAIL_DROP_LENGTH = 5;
 
 let EPS = 0.0001;
 
@@ -47,6 +50,12 @@ function getImg(src) { // Load images
 
 // Loading current imgs 
 // *saved just for examples*
+let IMG_DIRS = [
+    getImg("textures/up.png"),
+    getImg("textures/right.png"),
+    getImg("textures/down.png"),
+    getImg("textures/left.png")
+];
 /*
 // Endgame screens
 let IMG_DEAD = getImg("textures/interface/deathscreen.png");

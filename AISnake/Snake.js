@@ -1,7 +1,6 @@
 class Snake {
     constructor() {        
         this.body = [];
-        
     }
 
     // Init example snake
@@ -59,7 +58,7 @@ class Snake {
         }
 
         // Check for collision
-        if (this.check_obstacle_relative(Vec2_ZERO)) {
+        if (this.check_obstacle_relative(Vec2_ZERO)) {        
             alert("collision");
         }
 
@@ -69,10 +68,15 @@ class Snake {
         game.grid.set(this.head_pos(), CELL.void);
     }
 
-        // Set shadow
-        game.grid.set(
-            this.head_pos(),
-            CELL.snake)
+    // Spliting
+    if (this.body.length >= SNAKE_CRITICAL_LENGTH) {
+        this.split(SNAKE_TAIL_DROP_LENGTH);
+    }
+
+    // Set shadow
+    game.grid.set(
+        this.head_pos(),
+        CELL.snake)
     }
 
     grow() {
@@ -85,10 +89,13 @@ class Snake {
 
     split(tail) {
         let new_snake = new Snake();
+        let dir_acc = this.body[this.body.length - 1].direction;
         for (let i = 0; i < tail; i++) {
             let block = this.body.pop();
-            block.direction = (block.direction + 2) % 4;
+            let save_dir = block.direction;
+            block.direction = (dir_acc + 2) % 4;
             new_snake.body.push(block);
+            dir_acc = save_dir;
         }
         game.tickable.push(new_snake);
     }
@@ -134,6 +141,25 @@ class Snake {
             if (i == 0) {
                 draw.rect(this.body[i].pos.x * CELL_SIZE, this.body[i].pos.y * CELL_SIZE, CELL_SIZE, CELL_SIZE, "blue");
             }
+            draw.image(
+                IMG_DIRS[this.body[i].direction], 
+                this.body[i].pos.x * CELL_SIZE, 
+                this.body[i].pos.y * CELL_SIZE, 
+                CELL_SIZE, CELL_SIZE);
         }
+        CTX.beginPath(); 
+        CTX.strokeStyle = 'white';
+        CTX.moveTo(
+            (this.body[0].pos.x * CELL_SIZE + CELL_SIZE / 2) * SCALE, 
+            (this.body[0].pos.y * CELL_SIZE + CELL_SIZE / 2)* SCALE
+            );
+        for (let i = 1; i < this.body.length; i++) {
+            CTX.lineTo(
+                (this.body[i].pos.x * CELL_SIZE + CELL_SIZE / 2) * SCALE, 
+                (this.body[i].pos.y * CELL_SIZE + CELL_SIZE / 2)* SCALE
+                );
+        }
+
+        CTX.stroke();
     }
 }
