@@ -86,6 +86,7 @@ class Snake {
         // Eating
         if (game.grid.get(this.head_pos()) == CELL.apple) {
             this.grow();
+            game.increase_score();
             game.grid.set(this.head_pos(), CELL.void);
         }
 

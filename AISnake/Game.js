@@ -4,6 +4,7 @@
 class Game {
     constructor() {
         this.grid = new Grid();
+        this.score = 0;
         this.tickable = [];
         let snake = new Snake();
         snake.init_example();
@@ -12,6 +13,11 @@ class Game {
         this.stepebal = [];
 
         this.animations = [];
+    }
+    
+    increase_score() {
+        this.score++;
+        document.getElementById('score').innerHTML = "Score: " + this.score;
     }
 
     step() {
