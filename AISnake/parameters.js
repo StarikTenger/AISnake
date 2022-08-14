@@ -58,6 +58,9 @@ let IMG_DIRS = [
     getImg("textures/down.png"),
     getImg("textures/left.png")
 ];
+
+IMGS = [getImg("textures/head.png")];
+
 /*
 // Endgame screens
 let IMG_DEAD = getImg("textures/interface/deathscreen.png");

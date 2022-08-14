@@ -105,11 +105,6 @@ class Snake {
 
     spawn_animations() {
         for (let i = 0; i < this.body.length; i++) {
-            draw.rect(this.body[i].pos.x * CELL_SIZE, this.body[i].pos.y * CELL_SIZE, CELL_SIZE, CELL_SIZE, "green");
-            // head
-            if (i == 0) {
-                draw.rect(this.body[i].pos.x * CELL_SIZE, this.body[i].pos.y * CELL_SIZE, CELL_SIZE, CELL_SIZE, "blue");
-            }
 
             var block = this.body[i];
 
@@ -124,10 +119,10 @@ class Snake {
                 }
             } else if (i == this.body.length - 1) { // tail
                 draw.image(
-                    IMG_DIRS[this.body[i].direction], 
+                    IMG_DIRS[2], 
                     this.body[i].pos.x * CELL_SIZE, 
                     this.body[i].pos.y * CELL_SIZE, 
-                    CELL_SIZE, CELL_SIZE);
+                    CELL_SIZE, CELL_SIZE, );
                 if (this.dead) {
                     draw.rect(this.body[i].pos.x * CELL_SIZE, this.body[i].pos.y * CELL_SIZE, CELL_SIZE, CELL_SIZE, "rgba(255, 255, 255, 0.5)");
                 }
@@ -209,34 +204,44 @@ class Snake {
 
     draw() {
         for (let i = 0; i < this.body.length; i++) {
-            draw.rect(this.body[i].pos.x * CELL_SIZE, this.body[i].pos.y * CELL_SIZE, CELL_SIZE, CELL_SIZE, "green");
-            // head
-            if (i == 0) {
-                draw.rect(this.body[i].pos.x * CELL_SIZE, this.body[i].pos.y * CELL_SIZE, CELL_SIZE, CELL_SIZE, "blue");
-            }
-
             var block = this.body[i];
 
             if (i == 0) { // head
                 draw.image(
-                    IMG_DIRS[this.body[i].direction], 
+                    IMG_DIRS[0], 
                     this.body[i].pos.x * CELL_SIZE, 
                     this.body[i].pos.y * CELL_SIZE, 
-                    CELL_SIZE, CELL_SIZE);
+                    CELL_SIZE, CELL_SIZE, this.body[i].direction * 90);
                 if (this.dead) {
                     draw.rect(this.body[i].pos.x * CELL_SIZE, this.body[i].pos.y * CELL_SIZE, CELL_SIZE, CELL_SIZE, "rgba(255, 255, 255, 0.5)");
                 }
             } else if (i == this.body.length - 1) { // tail
                 draw.image(
-                    IMG_DIRS[this.body[i].direction], 
+                    IMG_DIRS[1], 
                     this.body[i].pos.x * CELL_SIZE, 
                     this.body[i].pos.y * CELL_SIZE, 
-                    CELL_SIZE, CELL_SIZE);
+                    CELL_SIZE, CELL_SIZE, this.body[i].direction * 90);
                 if (this.dead) {
                     draw.rect(this.body[i].pos.x * CELL_SIZE, this.body[i].pos.y * CELL_SIZE, CELL_SIZE, CELL_SIZE, "rgba(255, 255, 255, 0.5)");
                 }
             } else { // body
-                
+                if (this.body[i].direction != this.body[i + 1].direction) {
+                    draw.image(
+                        IMG_DIRS[2], 
+                        this.body[i].pos.x * CELL_SIZE, 
+                        this.body[i].pos.y * CELL_SIZE, 
+                        CELL_SIZE, CELL_SIZE, this.body[i + 1].direction * 90);    
+                }
+                else {
+                    draw.image(
+                        IMG_DIRS[1], 
+                        this.body[i].pos.x * CELL_SIZE, 
+                        this.body[i].pos.y * CELL_SIZE, 
+                        CELL_SIZE, CELL_SIZE, this.body[i].direction * 90);
+                }
+                if (this.dead) {
+                    draw.rect(this.body[i].pos.x * CELL_SIZE, this.body[i].pos.y * CELL_SIZE, CELL_SIZE, CELL_SIZE, "rgba(255, 255, 255, 0.5)");
+                }
             }
         }
 
