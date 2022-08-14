@@ -1,7 +1,12 @@
 class Snake {
-    constructor() {
-        // !HARDCODE!
+    constructor() {        
         this.body = [];
+        
+    }
+
+    // Init example snake
+    init_example() {
+        // !HARDCODE!
         this.body.push(new SnakeBlock(new Vec2(4, 1), RIGHT));
         this.body.push(new SnakeBlock(new Vec2(3, 1), RIGHT));
         this.body.push(new SnakeBlock(new Vec2(2, 1), RIGHT));
@@ -9,32 +14,7 @@ class Snake {
         this.body.push(new SnakeBlock(new Vec2(0, 1), RIGHT));
     }
 
-    head_direction() {
-        return this.body[0].direction;
-    }
-
-    head_pos() {
-        return this.body[0].pos;
-    }
-
-    pos_relative(pos) {
-        let front = DIRECTION_VECTORS[this.head_direction()];
-        let right = DIRECTION_VECTORS[shift_clockwise(this.head_direction())];
-        let pos_abs = plus(
-            mult(front, -pos.y),
-            mult(right, pos.x)
-        );
-        pos_abs = plus(pos_abs, this.head_pos());
-        //console.log(pos_abs);
-        return pos_abs;
-    }
-
-    check_obstacle_relative(pos) {
-        return game.grid.check_obstacle(
-            this.pos_relative(pos)
-        )
-    }
-
+    // Entery point
     tick() {
         // Thinking
         this.think();
@@ -63,14 +43,6 @@ class Snake {
                     this.turn_right();
             }
         }
-    }
-
-    grow() {
-        this.body.push(this.body[this.body.length - 1].clone())
-        this.body[this.body.length - 1].pos =  minus(
-                this.body[this.body.length - 1].pos,
-                DIRECTION_VECTORS[this.body[this.body.length - 1].direction]
-            )
     }
 
     // Moves snake by a single cell
@@ -103,12 +75,46 @@ class Snake {
             CELL.snake)
     }
 
+    grow() {
+        this.body.push(this.body[this.body.length - 1].clone())
+        this.body[this.body.length - 1].pos =  minus(
+                this.body[this.body.length - 1].pos,
+                DIRECTION_VECTORS[this.body[this.body.length - 1].direction]
+            )
+    }
+
     turn_right() {
         this.body[0].direction = shift_clockwise(this.body[0].direction)
     }
 
     turn_left() {
         this.body[0].direction = shift_counterclockwise(this.body[0].direction)
+    }
+
+    head_direction() {
+        return this.body[0].direction;
+    }
+
+    head_pos() {
+        return this.body[0].pos;
+    }
+
+    pos_relative(pos) {
+        let front = DIRECTION_VECTORS[this.head_direction()];
+        let right = DIRECTION_VECTORS[shift_clockwise(this.head_direction())];
+        let pos_abs = plus(
+            mult(front, -pos.y),
+            mult(right, pos.x)
+        );
+        pos_abs = plus(pos_abs, this.head_pos());
+        //console.log(pos_abs);
+        return pos_abs;
+    }
+
+    check_obstacle_relative(pos) {
+        return game.grid.check_obstacle(
+            this.pos_relative(pos)
+        )
     }
 
     draw() {

@@ -6,9 +6,10 @@ class Game {
         this.grid = new Grid();
         this.tickable = [];
         let snake = new Snake();
+        snake.init_example();
         this.tickable.push(snake);
     }
-
+Ц
     step() {
         this.grid.step();
         for (let i = 0; i < this.tickable.length; i++) {
