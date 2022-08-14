@@ -207,7 +207,10 @@ class Snake {
     }
 
     draw() {
-        for (let i = 2; i < this.body.length; i++) {
+        let start_ind = 0;
+        if (!this.dead)
+            start_ind = 2;
+        for (let i = start_ind; i < this.body.length; i++) {
             var block = this.body[i];
 
             if (i == 0) { // head
@@ -220,11 +223,11 @@ class Snake {
                         texture_num = 6;
                     }
                 }
-                // draw.image(
-                //     IMG_DIRS[texture_num], 
-                //     this.body[i].pos.x * CELL_SIZE, 
-                //     this.body[i].pos.y * CELL_SIZE, 
-                //     CELL_SIZE, CELL_SIZE, this.body[i].direction * 90);
+                draw.image(
+                    IMG_DIRS[texture_num], 
+                    this.body[i].pos.x * CELL_SIZE, 
+                    this.body[i].pos.y * CELL_SIZE, 
+                    CELL_SIZE, CELL_SIZE, this.body[i].direction * 90);
                 if (this.dead) {
                     draw.rect(this.body[i].pos.x * CELL_SIZE, this.body[i].pos.y * CELL_SIZE, CELL_SIZE, CELL_SIZE, "rgba(255, 255, 255, 0.5)");
                 }
