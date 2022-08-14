@@ -1,6 +1,7 @@
 class Snake {
     constructor() {        
         this.body = [];
+        this.dead = false;
     }
 
     // Init example snake
@@ -15,6 +16,9 @@ class Snake {
 
     // Entery point
     tick() {
+        if (this.dead)
+            return;
+
         // Thinking
         this.think();
 
@@ -40,6 +44,13 @@ class Snake {
 
     // Moves snake by a single cell
     move() {
+        // Check for collision
+        if (this.check_obstacle_relative(DIRECTION_VECTORS[UP])) { 
+            console.log(this.body[0].pos);      
+            this.dead = true;
+            return
+        }
+        
         // Remove shadow
         game.grid.set(
             this.body[this.body.length - 1].pos,
@@ -55,12 +66,6 @@ class Snake {
             if (i != 0) {
                 this.body[i].direction = this.body[i - 1].direction;
             }
-        }
-
-        // Check for collision
-        if (this.check_obstacle_relative(Vec2_ZERO)) { 
-            console.log(this.body[0].pos);      
-            alert("collision");
         }
 
     // Eating
@@ -147,6 +152,9 @@ class Snake {
                 this.body[i].pos.x * CELL_SIZE, 
                 this.body[i].pos.y * CELL_SIZE, 
                 CELL_SIZE, CELL_SIZE);
+            if (this.dead) {
+                draw.rect(this.body[i].pos.x * CELL_SIZE, this.body[i].pos.y * CELL_SIZE, CELL_SIZE, CELL_SIZE, "rgba(255, 255, 255, 0.5)");
+            }
         }
         CTX.beginPath(); 
         CTX.strokeStyle = 'white';
