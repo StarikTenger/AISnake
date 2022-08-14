@@ -43,8 +43,13 @@ class Draw {
 
     draw(game) {  
         // Filling background
-        //this.ctx.fillStyle = "green";
+        this.ctx.fillStyle = "green";
         this.ctx.fillRect(0, 0, 10000, 10000);
+        for (let x = 0; x < SIZE_X; x++) {
+            for (let y = 0; y < SIZE_Y; y++) {
+                this.rect(x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE, "black");
+            }
+        }
 
         for (let i = 0; i < game.tickable.length; i++) {
             game.tickable[i].draw();
