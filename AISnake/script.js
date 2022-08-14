@@ -10,7 +10,6 @@ myAudio.addEventListener('ended', function() {
 }, false);
 
 function step() {
-    VOLUME = 0.3;
     if (game.RELOAD) {
         game = new Game();
     }
