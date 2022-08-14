@@ -28,17 +28,32 @@ class Snake {
 
     think() {
         // Turn if there is a border ahead
+        let apple_left = game.grid.get(
+            this.pos_relative(DIRECTION_VECTORS[LEFT])
+            ) == CELL.apple;
+        let apple_right = game.grid.get(
+            this.pos_relative(DIRECTION_VECTORS[RIGHT])
+            ) == CELL.apple;
+        
+        if (apple_left) {
+            this.turn_left();
+            return;
+        }
+        else if (apple_right) {
+            this.turn_right();
+            return;
+        }
+
         if (this.check_obstacle_relative(DIRECTION_VECTORS[UP])) {
             if (this.check_obstacle_relative(DIRECTION_VECTORS[LEFT]))
                 this.turn_right();
             else if (this.check_obstacle_relative(DIRECTION_VECTORS[RIGHT]))
                 this.turn_left();
-            else {
-                if (random(0,1))
+            else
+                if (random(0,1)) 
                     this.turn_left();
-                else
+                else 
                     this.turn_right();
-            }
         }
     }
 
