@@ -59,7 +59,11 @@ let IMG_DIRS = [
     getImg("textures/left.png")
 ];
 
-IMGS = [getImg("textures/head.png")];
+let IMGS = [
+    getImg("textures/floor.png"),
+    getImg("textures/apple.png"),
+    getImg("textures/wall.png")
+];
 
 /*
 // Endgame screens

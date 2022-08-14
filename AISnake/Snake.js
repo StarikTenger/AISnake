@@ -245,19 +245,19 @@ class Snake {
             }
         }
 
-        CTX.beginPath(); 
-        CTX.strokeStyle = 'white';
-        CTX.moveTo(
-            (this.body[0].pos.x * CELL_SIZE + CELL_SIZE / 2) * SCALE, 
-            (this.body[0].pos.y * CELL_SIZE + CELL_SIZE / 2)* SCALE
-            );
-        for (let i = 1; i < this.body.length; i++) {
-            CTX.lineTo(
-                (this.body[i].pos.x * CELL_SIZE + CELL_SIZE / 2) * SCALE, 
-                (this.body[i].pos.y * CELL_SIZE + CELL_SIZE / 2)* SCALE
-                );
-        }
+        // CTX.beginPath(); 
+        // CTX.strokeStyle = 'white';
+        // CTX.moveTo(
+        //     (this.body[0].pos.x * CELL_SIZE + CELL_SIZE / 2) * SCALE, 
+        //     (this.body[0].pos.y * CELL_SIZE + CELL_SIZE / 2)* SCALE
+        //     );
+        // for (let i = 1; i < this.body.length; i++) {
+        //     CTX.lineTo(
+        //         (this.body[i].pos.x * CELL_SIZE + CELL_SIZE / 2) * SCALE, 
+        //         (this.body[i].pos.y * CELL_SIZE + CELL_SIZE / 2)* SCALE
+        //         );
+        // }
 
-        CTX.stroke();
+        // CTX.stroke();
     }
 }
