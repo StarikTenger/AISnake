@@ -64,7 +64,7 @@ class Snake {
         // Changing the direction of all parts of the snake
         for (let i = this.body.length - 1; i >= 0; i--) {
             if (i != 0) {
-                this.body[i].direction = this.body[i - 1].direction;
+                this.body[i].set_direction(this.body[i - 1].direction);
             }
         }
 
@@ -103,7 +103,7 @@ class Snake {
         for (let i = 0; i < tail; i++) {
             let block = this.body.pop();
             let save_dir = block.direction;
-            block.direction = (dir_acc + 2) % 4;
+            block.set_direction((dir_acc + 2) % 4);
             new_snake.body.push(block);
             dir_acc = save_dir;
         }
@@ -111,11 +111,11 @@ class Snake {
     }
 
     turn_right() {
-        this.body[0].direction = shift_clockwise(this.body[0].direction)
+        this.body[0].set_direction(shift_clockwise(this.body[0].direction));
     }
 
     turn_left() {
-        this.body[0].direction = shift_counterclockwise(this.body[0].direction)
+        this.body[0].set_direction(shift_counterclockwise(this.body[0].direction));
     }
 
     head_direction() {
