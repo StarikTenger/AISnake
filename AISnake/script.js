@@ -10,10 +10,19 @@ myAudio.addEventListener('ended', function() {
 myAudio.play();
 
 function step() {
+    if (game.RELOAD) {
+        game = new Game();
+    }
+    if (game.all_dead) {
+        return;
+    }
     step_count++;
     if (step_count == TICK_STEPS_NUM) {
         step_count = 0;
         game.tick();
+        if (game.all_dead) {
+            return;
+        }
     }
     //myAudio.volume = VOLUME;
     //myAudio.play();
@@ -25,11 +34,6 @@ function step() {
     }
     if (KEY_PLUS) {
         VOLUME = Math.min(1, VOLUME + 0.1);
-    }
-
-    // Previous keys
-    if (game.RELOAD == 1) {
-        game = new Game();
     }
 }
 

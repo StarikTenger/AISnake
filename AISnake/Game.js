@@ -13,6 +13,10 @@ class Game {
         this.stepebal = [];
 
         this.animations = [];
+
+        this.all_dead = false;
+
+        this.RELOAD = false;
     }
     
     increase_score() {
@@ -29,8 +33,25 @@ class Game {
     }
 
     tick() {
+        this.all_dead = true;
         for (let i = 0; i < this.tickable.length; i++) {
             this.tickable[i].tick();
+            if (this.tickable[i] instanceof Snake) {
+                this.all_dead &= this.tickable[i].dead;
+            }
+        }
+        if (this.all_dead) {
+            draw.rect(0, 0, 10000, 10000, "black");
+            draw.text("Your score: " + this.score, 225, 320);
+            draw.text("Press R to restart", 190, 370);
+
+            document.getElementById('score').style.display = 'none';
+
+            document.addEventListener('keydown', function(event) {
+                if(event.keyCode == 82) {
+                    document.location.reload(true);
+                }
+            });
         }
     }
 }

@@ -38,7 +38,13 @@ class Draw {
         this.ctx.fillRect((x) * SCALE, (y) * SCALE, w * SCALE, h * SCALE);
     }
 
-    draw(game) {    
+    text(text, x, y) {
+        this.ctx.fillStyle = "white";
+        this.ctx.font = "48px serif";
+        this.ctx.fillText(text, x, y);
+    }
+
+    draw(game) {  
         // Filling background
         this.ctx.fillStyle = "green";
         this.ctx.fillRect(0, 0, 10000, 10000);
