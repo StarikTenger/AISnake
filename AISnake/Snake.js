@@ -58,7 +58,8 @@ class Snake {
         }
 
         // Check for collision
-        if (this.check_obstacle_relative(Vec2_ZERO)) {        
+        if (this.check_obstacle_relative(Vec2_ZERO)) { 
+            console.log(this.body[0].pos);      
             alert("collision");
         }
 
