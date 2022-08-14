@@ -2,14 +2,15 @@ var game = new Game();
 var draw = new Draw(CTX);
 var step_count = 0;
 
-var myAudio = new Audio('music/main_theme.mp3'); 
+var myAudio = new Audio('music/main_theme.mp3');
 myAudio.addEventListener('ended', function() {
     this.currentTime = 0;
+    myAudio.volume = VOLUME;
     this.play();
 }, false);
-myAudio.play();
 
 function step() {
+    VOLUME = 0.3;
     if (game.RELOAD) {
         game = new Game();
     }
@@ -23,9 +24,9 @@ function step() {
         if (game.all_dead) {
             return;
         }
-    }
-    //myAudio.volume = VOLUME;
-    //myAudio.play();
+    }   
+    myAudio.volume = VOLUME;
+    myAudio.play();
     draw.draw(game);
     game.step();
 

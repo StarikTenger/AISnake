@@ -22,7 +22,7 @@ let SIZE_X = 16;
 let SIZE_Y = 16;
 
 // Music
-let VOLUME = 1;
+let VOLUME = 0.3;
 
 // Some govnocode
 let CLICKED = false;

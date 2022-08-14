@@ -41,6 +41,7 @@ class Game {
             }
         }
         if (this.all_dead) {
+            // HARDCODED
             draw.rect(0, 0, 10000, 10000, "black");
             draw.text("Your score: " + this.score, 225, 320);
             draw.text("Press R to restart", 190, 370);
