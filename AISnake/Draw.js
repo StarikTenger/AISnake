@@ -5,23 +5,20 @@ class Draw {
        this.ctx = ctx;
     }
 
-    image(texture, x, y, w, h, flip) {
+    image(texture, x, y, w, h, degrees = 0) {
         x = Math.round(x);
         y = Math.round(y);
         w = Math.round(w);
         h = Math.round(h);
-    
-        if(!flip)
-            flip = 0;
-            
+
         this.ctx.save();
-        let width = 1;
-        if (flip) {
-            this.ctx.scale(-1, 1);
-            width = -1;
-        }
+        this.ctx.translate(x * SCALE, y * SCALE);
+        this.ctx.translate(w*SCALE/2, h*SCALE/2);
+        this.ctx.rotate(degrees*Math.PI/180);
+        this.ctx.translate(-w*SCALE/2, -h*SCALE/2);
+
         this.ctx.imageSmoothingEnabled = 0;
-        this.ctx.drawImage(texture, width*(x + w * flip) * SCALE, (y) * SCALE, w * SCALE, h * SCALE);
+        this.ctx.drawImage(texture, 0, 0, w*SCALE, h*SCALE);
 
         this.ctx.restore();
     }
