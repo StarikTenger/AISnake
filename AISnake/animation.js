@@ -1,24 +1,11 @@
 class Animation {
-    constructor(frames, pos, t, interface_bind, repeating) {
+    constructor(frames, pos) {
         this.frames = frames; // Images
         this.pos = new Vec2(pos.x, pos.y); // Position
-        this.frameTime = t; // Frame change period
-        this.timer = this.frameTime; // Countdown to change frame
         this.currentFrame = 0; // id of current frame
         this.alive = 1; // If 0 - animation must be deleted
 
-        if (interface_bind) {
-            this.interface_bind = 1; // drawn at very top of all layers
-        } else {
-            this.interface_bind = 0;
-        }
-        if (repeating) { // 0 - dying after repeating, 1 - repeating, 2 - last frame alive
-            this.repeating = repeating;
-        } else {
-            this.repeating = 0;
-        }
-
-        this.rot = 0;
+        this.direction = 0;
         this.flip = 0;
     }
 
@@ -80,7 +67,7 @@ function get_img(src) { // Load images
 }
 
 class AnimationHolder {
-    constructor(path, extension, frame_cnt, cycle_time, repeating) {
+    constructor(path, extension, frame_cnt) {
         this.frames = []
         for (let i = 0; i < frame_cnt; i++) {
             this.frames.push(get_img(path + "/" + i.toString() + "." + extension))
