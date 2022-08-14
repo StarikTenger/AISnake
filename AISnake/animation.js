@@ -17,6 +17,9 @@ class Animation {
         } else {
             this.repeating = 0;
         }
+
+        this.rot = 0;
+        this.flip = 0;
     }
 
     step() {
@@ -39,6 +42,35 @@ class Animation {
     get_frame() {
         return this.frames[this.currentFrame];
     }
+
+    draw() { // TODO - how to rotate pictures? 
+        if (!this.alive) {
+            return;
+        }
+
+        var img = this.get_frame();
+        var x = this.pos.x;
+        var y = this.pos.y;
+
+        draw.ctx.save();
+
+        // draw.ctx.translate(x, y);
+        // draw.ctx.rotate(- this.rot * 90 * Math.PI / 180);
+
+        // draw.image(
+        //     img, 
+        //     - CELL_SIZE / 2,
+        //     - CELL_SIZE / 2, 
+        //     CELL_SIZE, CELL_SIZE);
+
+        draw.image(
+            img, 
+            x,
+            y, 
+            CELL_SIZE, CELL_SIZE);
+
+        draw.ctx.restore();
+    }
 };
 
 function get_img(src) { // Load images
@@ -59,6 +91,18 @@ class AnimationHolder {
     }
 
     spawn(pos) {
-        return new Animation(this.frames, pos, 1 / this.cycle_time, 0 , this.repeating); // 0 is for interface bind, we dont use it
+        var anm = new Animation(this.frames, pos, 1 / this.cycle_time, 0 , this.repeating); // 0 is for interface bind, we dont use it
+
+        game.stepebal.push(anm);
+        game.animations.push(anm);
+    }
+
+    spawn_with_rot_and_dirs(pos, rot, dir_cur, dir_next) {
+        var anm = new Animation(this.frames, pos, 1 / this.cycle_time, 0 , this.repeating); // 0 is for interface bind, we dont use it
+
+        anm.rot = rot
+
+        game.stepebal.push(anm);
+        game.animations.push(anm);
     }
 };

@@ -22,6 +22,7 @@ class Draw {
         }
         this.ctx.imageSmoothingEnabled = 0;
         this.ctx.drawImage(texture, width*(x + w * flip) * SCALE, (y) * SCALE, w * SCALE, h * SCALE);
+
         this.ctx.restore();
     }
 
@@ -44,6 +45,10 @@ class Draw {
 
         for (let i = 0; i < game.tickable.length; i++) {
             game.tickable[i].draw();
+        }
+
+        for (let i = 0; i < game.animations.length; i++) {
+            game.animations[i].draw();
         }
     };
 }

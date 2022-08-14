@@ -8,10 +8,18 @@ class Game {
         let snake = new Snake();
         snake.init_example();
         this.tickable.push(snake);
+
+        this.stepebal = [];
+
+        this.animations = [];
     }
 
     step() {
         this.grid.step();
+
+        for (let i = 0; i < this.stepebal.length; i++) {
+            this.stepebal[i].step();
+        }
     }
 
     tick() {
