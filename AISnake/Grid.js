@@ -57,7 +57,7 @@ class Grid {
     }
 
     step() {
-        this.apple_num = 0;
+        let apple_num = 0;
         // Adding walls
         if (CLICKED) {
             CLICKED = false;
@@ -65,13 +65,9 @@ class Grid {
         }
         for (let x = 0; x < SIZE_X; x++) {
             for (let y = 0; y < SIZE_Y; y++) {
-                // Adding apples
-                if (this.field[x][y] == 'void' && Math.random() < (APPLES_APPEARANCE_PROBABILITY / (1 << this.apple_num)))
-                    this.field[x][y] = CELL.apple;
-
                 // Counting apples 
                 if (this.field[x][y] == 'apple')
-                    this.apple_num++;
+                    apple_num++;
 
                 // Drawing grid
                 switch(this.field[x][y]) {
@@ -87,6 +83,11 @@ class Grid {
                 }
             }
         }
+        // Adding apples
+        let rnd_x = random(0, SIZE_X - 1);
+        let rnd_y = random(0, SIZE_Y - 1);
+        if (apple_num < APPLE_LIMIT && this.field[rnd_x][rnd_y] == CELL.void)
+            this.field[rnd_x][rnd_y] = CELL.apple;
     }
 
 }
