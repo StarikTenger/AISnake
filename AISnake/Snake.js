@@ -19,12 +19,6 @@ class Snake {
         // Thinking
         this.think();
 
-        // Eating
-        if (game.grid.get(this.head_pos()) == CELL.apple) {
-            this.grow();
-            game.grid.set(this.head_pos(), CELL.void);
-        }
-
         // Moving
         this.move();
     }
@@ -68,6 +62,12 @@ class Snake {
         if (this.check_obstacle_relative(Vec2_ZERO)) {
             alert("collision");
         }
+
+    // Eating
+    if (game.grid.get(this.head_pos()) == CELL.apple) {
+        this.grow();
+        game.grid.set(this.head_pos(), CELL.void);
+    }
 
         // Set shadow
         game.grid.set(
