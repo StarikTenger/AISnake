@@ -1,7 +1,7 @@
 class Snake {
     constructor() {        
         this.body = [];
-        this.dead = false;
+        this.dead = false;        
     }
 
     // Init example snake
@@ -77,11 +77,15 @@ class Snake {
             this.body[i].pos.y += DIRECTION_VECTORS[this.body[i].direction].y;
         }
         // Changing the direction of all parts of the snake
-        for (let i = this.body.length - 1; i >= 0; i--) {
+        for (let i = this.body.length - 1; i >= 0; i--) { 
             if (i != 0) {
                 this.body[i].set_direction(this.body[i - 1].direction);
             }
         }
+        
+        // Animation
+        AH_snake_head_enter.spawn(this.head_pos(), this.head_direction());
+        AH_snake_head_leave.spawn(this.body[1].pos, this.body[1].direction);
 
         // Eating
         if (game.grid.get(this.head_pos()) == CELL.apple) {
@@ -203,7 +207,7 @@ class Snake {
     }
 
     draw() {
-        for (let i = 0; i < this.body.length; i++) {
+        for (let i = 2; i < this.body.length; i++) {
             var block = this.body[i];
 
             if (i == 0) { // head
@@ -216,11 +220,11 @@ class Snake {
                         texture_num = 6;
                     }
                 }
-                draw.image(
-                    IMG_DIRS[texture_num], 
-                    this.body[i].pos.x * CELL_SIZE, 
-                    this.body[i].pos.y * CELL_SIZE, 
-                    CELL_SIZE, CELL_SIZE, this.body[i].direction * 90);
+                // draw.image(
+                //     IMG_DIRS[texture_num], 
+                //     this.body[i].pos.x * CELL_SIZE, 
+                //     this.body[i].pos.y * CELL_SIZE, 
+                //     CELL_SIZE, CELL_SIZE, this.body[i].direction * 90);
                 if (this.dead) {
                     draw.rect(this.body[i].pos.x * CELL_SIZE, this.body[i].pos.y * CELL_SIZE, CELL_SIZE, CELL_SIZE, "rgba(255, 255, 255, 0.5)");
                 }

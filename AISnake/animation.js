@@ -10,19 +10,10 @@ class Animation {
     }
 
     step() {
-        this.timer -= DT;
-        if (this.timer <= 0) {
-            this.currentFrame++;
-            this.timer = this.frameTime;
-            if (this.currentFrame >= this.frames.length)
-            {
-                if (this.repeating == 0) { // Repeating check
-                    this.alive = 0;
-                }
-                else if (this.repeating == 1) {
-                    this.currentFrame = 0;
-                }
-            }
+        this.currentFrame++;
+        this.timer = this.frameTime;
+        if (this.currentFrame >= this.frames.length) {
+            this.alive = 0;
         }
     }
 
@@ -36,8 +27,8 @@ class Animation {
         }
 
         var img = this.get_frame();
-        var x = this.pos.x;
-        var y = this.pos.y;
+        var x = this.pos.x * CELL_SIZE;
+        var y = this.pos.y * CELL_SIZE;
 
         draw.ctx.save();
 
@@ -54,7 +45,8 @@ class Animation {
             img, 
             x,
             y, 
-            CELL_SIZE, CELL_SIZE);
+            CELL_SIZE, CELL_SIZE,
+            this.direction * 90);
 
         draw.ctx.restore();
     }
@@ -72,20 +64,17 @@ class AnimationHolder {
         for (let i = 0; i < frame_cnt; i++) {
             this.frames.push(get_img(path + "/" + i.toString() + "." + extension))
         }
-
-        this.cycle_time = cycle_time
-        this.repeating = repeating
     }
 
-    spawn(pos) {
-        var anm = new Animation(this.frames, pos, 1 / this.cycle_time, 0 , this.repeating); // 0 is for interface bind, we dont use it
-
+    spawn(pos, dir) {
+        let anm = new Animation(this.frames, pos, 1 / this.cycle_time, 0 , this.repeating); // 0 is for interface bind, we dont use it
+        anm.direction = dir;
         game.stepebal.push(anm);
         game.animations.push(anm);
     }
 
     spawn_with_rot_and_dirs(pos, rot, dir_cur, dir_next) {
-        var anm = new Animation(this.frames, pos, 1 / this.cycle_time, 0 , this.repeating); // 0 is for interface bind, we dont use it
+        let anm = new Animation(this.frames, pos, 1 / this.cycle_time, 0 , this.repeating); // 0 is for interface bind, we dont use it
 
         anm.rot = rot
 
