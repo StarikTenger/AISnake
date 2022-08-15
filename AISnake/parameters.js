@@ -29,6 +29,9 @@ let CLICKED = false;
 let CLICKED_X = 0;
 let CLICKED_Y = 0;
 
+let MOUSE_X = 100000;
+let MOUSE_Y = 100000;
+
 //// DRAW PREFERENCES ////
 // не ебу, зачем оно, но пусть будет
 let SCALE = 1; // 1 Cell in px
@@ -65,7 +68,9 @@ let IMG_DIRS = [
 let IMGS = [
     getImg("resources/textures/floor/floor.png"),
     getImg("textures/apple.png"),
-    getImg("resources/textures/walls/wall.png")
+    getImg("resources/textures/walls/wall.png"),
+    getImg("textures/yellow_square.png"),
+    getImg("textures/red_square.png")
 ];
 
 /*

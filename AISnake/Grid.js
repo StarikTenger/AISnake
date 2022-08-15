@@ -22,6 +22,12 @@ class Grid {
             CLICKED_Y = Math.floor(event.y / SCALE / CELL_SIZE);
             CLICKED = true;
         }, false);
+
+        // Add event listener for `mouse move` events.
+        document.onmousemove=  function (event) {
+            MOUSE_X = Math.floor(event.x / SCALE / CELL_SIZE);
+            MOUSE_Y = Math.floor(event.y / SCALE / CELL_SIZE);
+        };
     }
 
     get(pos) {
@@ -86,6 +92,13 @@ class Grid {
                         break;
                 }
             }
+        }
+        // Cursor handler
+        if (MOUSE_X < SIZE_X && MOUSE_Y < SIZE_Y) {
+            if (this.field[MOUSE_X][MOUSE_Y] == 'void')
+                draw.image(IMGS[3], MOUSE_X * CELL_SIZE, MOUSE_Y * CELL_SIZE, CELL_SIZE, CELL_SIZE);
+            if (this.field[MOUSE_X][MOUSE_Y] == 'wall')
+                draw.image(IMGS[4], MOUSE_X * CELL_SIZE, MOUSE_Y * CELL_SIZE, CELL_SIZE, CELL_SIZE);
         }
         // Adding apples
         let rnd_x = random(0, SIZE_X - 1);
