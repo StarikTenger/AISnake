@@ -130,18 +130,12 @@ class Snake {
                     this.body[i].pos.x * CELL_SIZE, 
                     this.body[i].pos.y * CELL_SIZE, 
                     CELL_SIZE, CELL_SIZE);
-                if (this.dead) {
-                    draw.rect(this.body[i].pos.x * CELL_SIZE, this.body[i].pos.y * CELL_SIZE, CELL_SIZE, CELL_SIZE, "rgba(255, 255, 255, 0.5)");
-                }
             } else if (i == this.body.length - 1) { // tail
                 draw.image(
                     IMG_DIRS[2], 
                     this.body[i].pos.x * CELL_SIZE, 
                     this.body[i].pos.y * CELL_SIZE, 
                     CELL_SIZE, CELL_SIZE, );
-                if (this.dead) {
-                    draw.rect(this.body[i].pos.x * CELL_SIZE, this.body[i].pos.y * CELL_SIZE, CELL_SIZE, CELL_SIZE, "rgba(255, 255, 255, 0.5)");
-                }
             } else { // body
                 var cur_dir = block.direction;
                 var prev_dir_of_next_block =  this.body[i - 1];
@@ -220,6 +214,9 @@ class Snake {
     }
 
     draw() {
+        if (this.dead) {
+            draw.ctx.filter = "sepia(100%)"
+        }
         for (let i = 0; i < this.body.length; i++) {
             game.grid.set(this.body[i].pos, CELL.snake);
         }
@@ -247,18 +244,12 @@ class Snake {
                     this.body[i].pos.x * CELL_SIZE, 
                     this.body[i].pos.y * CELL_SIZE, 
                     CELL_SIZE, CELL_SIZE, this.body[i].direction * 90);
-                if (this.dead) {
-                    draw.rect(this.body[i].pos.x * CELL_SIZE, this.body[i].pos.y * CELL_SIZE, CELL_SIZE, CELL_SIZE, "rgba(255, 255, 255, 0.5)");
-                }
             } else if (i == this.body.length - 1) { // tail
                 draw.image(
                     IMG_DIRS[4], 
                     this.body[i].pos.x * CELL_SIZE, 
                     this.body[i].pos.y * CELL_SIZE, 
                     CELL_SIZE, CELL_SIZE, this.body[i].direction * 90);
-                if (this.dead) {
-                    draw.rect(this.body[i].pos.x * CELL_SIZE, this.body[i].pos.y * CELL_SIZE, CELL_SIZE, CELL_SIZE, "rgba(255, 255, 255, 0.5)");
-                }
             } else { // body
                 let texture_num = 1;
                 if (this.body[i].direction != this.body[i + 1].direction) {
@@ -274,9 +265,6 @@ class Snake {
                     this.body[i].pos.x * CELL_SIZE, 
                     this.body[i].pos.y * CELL_SIZE, 
                     CELL_SIZE, CELL_SIZE, this.body[i + 1].direction * 90);    
-                if (this.dead) {
-                    draw.rect(this.body[i].pos.x * CELL_SIZE, this.body[i].pos.y * CELL_SIZE, CELL_SIZE, CELL_SIZE, "rgba(255, 255, 255, 0.5)");
-                }
             }
         }
 
@@ -294,5 +282,8 @@ class Snake {
         // }
 
         // CTX.stroke();
+        if (this.dead) {
+            draw.ctx.filter = "sepia(0%)"
+        }
     }
 }
