@@ -221,8 +221,9 @@ class Snake {
     }
 
     draw() {
+        let imgs = IMG_DIRS;
         if (this.dead) {
-            draw.ctx.filter = "sepia(100%)"
+            imgs = IMG_DIRS_DEAD;
         }
         for (let i = 0; i < this.body.length; i++) {
             game.grid.set(this.body[i].pos, CELL.snake);
@@ -247,13 +248,13 @@ class Snake {
                     }
                 }
                 draw.image(
-                    IMG_DIRS[texture_num], 
+                    imgs[texture_num], 
                     this.body[i].pos.x * CELL_SIZE, 
                     this.body[i].pos.y * CELL_SIZE, 
                     CELL_SIZE, CELL_SIZE, this.body[i].direction * 90);
             } else if (i == this.body.length - 1) { // tail
                 draw.image(
-                    IMG_DIRS[4], 
+                    imgs[4], 
                     this.body[i].pos.x * CELL_SIZE, 
                     this.body[i].pos.y * CELL_SIZE, 
                     CELL_SIZE, CELL_SIZE, this.body[i].direction * 90);
@@ -268,7 +269,7 @@ class Snake {
                     }  
                 }
                 draw.image(
-                    IMG_DIRS[texture_num], 
+                    imgs[texture_num], 
                     this.body[i].pos.x * CELL_SIZE, 
                     this.body[i].pos.y * CELL_SIZE, 
                     CELL_SIZE, CELL_SIZE, this.body[i + 1].direction * 90);    
@@ -310,8 +311,5 @@ class Snake {
         // }
 
         // CTX.stroke();
-        if (this.dead) {
-            draw.ctx.filter = "sepia(0%)"
-        }
     }
 }

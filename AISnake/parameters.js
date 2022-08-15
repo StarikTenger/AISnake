@@ -68,6 +68,16 @@ let IMG_DIRS = [
     getImg("textures/head_rot_right.png")
 ];
 
+let IMG_DIRS_DEAD = [
+    getImg("textures/head.png"),
+    getImg("textures/body.png"),
+    getImg("textures/body_rot_left.png"),
+    getImg("textures/head_rot_left.png"),
+    getImg("textures/butt.png"),
+    getImg("textures/body_rot_right.png"),
+    getImg("textures/head_rot_right.png")
+];
+
 let IMGS = [
     getImg("resources/textures/floor/floor.png"),
     getImg("textures/apple.png"),
