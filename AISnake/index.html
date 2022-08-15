@@ -13,7 +13,6 @@
             font-family: 'Audiowide';
             font-size: 16px;
             color: #FFFFFF;
-            color: #FFFFFF;
             text-shadow: 
                 -0   -1px 0   #000000,
                 0   -1px 0   #000000,
@@ -32,12 +31,50 @@
                 -1px  1px 0   #000000,
                 1px  1px 0   #000000;
         }
+        div.container4 {
+            height: 640;
+            width: 640;
+            position: relative;
+        }
+        div.container4 p {
+            display: none;
+            font-family: 'Audiowide';
+            font-size: 40px;
+            color: #FFFFFF;
+            margin: 0;
+            position: absolute;
+            text-shadow: 
+                -0   -1px 0   #000000,
+                0   -1px 0   #000000,
+                -0    1px 0   #000000,
+                0    1px 0   #000000,
+                -1px -0   0   #000000,
+                1px -0   0   #000000,
+                -1px  0   0   #000000,
+                1px  0   0   #000000,
+                -1px -1px 0   #000000,
+                1px -1px 0   #000000,
+                -1px  1px 0   #000000,
+                1px  1px 0   #000000,
+                -1px -1px 0   #000000,
+                1px -1px 0   #000000,
+                -1px  1px 0   #000000,
+                1px  1px 0   #000000;
+            top: 45%;
+            left: 50%;
+            margin-right: -50%;
+            transform: translate(-50%, -50%);
+        }
     </style>
 </head>
 
 <div height = 640 width = 640>
     <canvas id = screen height="100%" width="100%"></canvas>
     <label id = score>Score: 0</label>
+    <div class=container4>
+        <p id = final_score>Center</p>
+        <p id = restart>Press R to restart</p>
+    </div>
 </div>
 <script src="deque.js"></script>
 <script src="basic.js"></script>
