@@ -220,6 +220,9 @@ class Snake {
     }
 
     draw() {
+        for (let i = 0; i < this.body.length; i++) {
+            game.grid.set(this.body[i].pos, CELL.snake);
+        }
         let start_ind = 0;
         let end_ind = 0;
         if (!this.dead) {
