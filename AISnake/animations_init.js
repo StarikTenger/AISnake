@@ -26,7 +26,7 @@ let AH_snake_tail_enter = new AnimationHolder(
 )
 
 let AH_snake_tail_leave = new AnimationHolder(
-    tex_ + "/snake/butt_anim",
+    tex_ + "/snake/butt_anim_leave",
     EXT_PNG,
     FRAME_CNT_SNAKE
 )

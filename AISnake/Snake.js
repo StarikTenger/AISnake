@@ -87,9 +87,6 @@ class Snake {
         // Animation
         AH_snake_head_enter.spawn(this.head_pos(), this.head_direction());
         AH_snake_head_leave.spawn(this.body[1].pos, this.body[1].direction);
-        AH_snake_tail_enter.spawn(
-            this.body[this.body.length - 1].pos, 
-            this.body[this.body.length - 1].direction);
 
         // Eating
         if (game.grid.get(this.head_pos()) == CELL.apple) {
@@ -98,6 +95,13 @@ class Snake {
             game.increase_score();
             game.grid.set(this.head_pos(), CELL.void);
         }
+
+        AH_snake_tail_enter.spawn(
+            this.body[this.body.length - 2].pos, 
+            this.body[this.body.length - 2].direction);
+        AH_snake_tail_leave.spawn(
+            this.body[this.body.length - 1].pos, 
+            this.body[this.body.length - 1].direction);
 
         // Spliting
         if (this.body.length >= SNAKE_CRITICAL_LENGTH) {
@@ -214,9 +218,12 @@ class Snake {
 
     draw() {
         let start_ind = 0;
-        if (!this.dead)
+        let end_ind = 0;
+        if (!this.dead) {
             start_ind = 2;
-        for (let i = start_ind; i < this.body.length; i++) {
+            end_ind = 2;
+        }
+        for (let i = start_ind; i < this.body.length - end_ind; i++) {
             var block = this.body[i];
 
             if (i == 0) { // head
