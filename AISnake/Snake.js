@@ -19,6 +19,9 @@ class Snake {
         if (this.dead)
             return;
 
+        // Getting lifetime score
+        game.increase_score();
+
         // Thinking
         this.think();
 
@@ -92,7 +95,7 @@ class Snake {
         if (game.grid.get(this.head_pos()) == CELL.apple) {
             play_sound(eat);
             this.grow();
-            game.increase_score();
+            //game.increase_score(); // scores for eating apple
             game.grid.set(this.head_pos(), CELL.void);
         }
 
