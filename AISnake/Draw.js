@@ -5,6 +5,11 @@ class Draw {
        this.ctx = ctx;
     }
 
+    loading_screen() {
+        var img = getImg("textures/start.png");
+        this.ctx.drawImage(img, 0, 0, 600, 600);
+    }
+
     image(texture, x, y, w, h, degrees = 0) {
         x = Math.round(x);
         y = Math.round(y);

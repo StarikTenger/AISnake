@@ -18,8 +18,15 @@ function play_sound(sound) {
 }
 
 function step() {
-    if (game.RELOAD) {
-        game = new Game();
+    document.addEventListener('keydown', function(event) {
+        if(event.keyCode == 82) {
+            document.getElementById('score').style.display = 'inline';
+            RELOAD = false;
+        }
+    });
+    if (RELOAD) {
+        draw.loading_screen();
+        return;
     }
     if (game.all_dead) {
         return;
