@@ -65,8 +65,7 @@ class Snake {
     move() {
         // Check for collision
         if (this.check_obstacle_relative(DIRECTION_VECTORS[UP])) { 
-            play_sound(death);   
-            this.dead = true;
+            this.die();
             return;
         }
         
@@ -101,8 +100,7 @@ class Snake {
         }
         this.starvation ++;
         if (this.starvation > SNAKE_STARVATION_DEATH_LIMIT) {
-            play_sound(death);   
-            this.dead = true;
+            this.die();
             return;
         }
 
@@ -124,6 +122,12 @@ class Snake {
             CELL.snake)
 
         // this.spawn_animations();
+    }
+
+    die() {
+        play_sound(death);   
+        this.dead = true;
+        this.body.pop();
     }
 
     spawn_animations() {
