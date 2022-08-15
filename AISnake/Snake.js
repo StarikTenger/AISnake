@@ -125,8 +125,11 @@ class Snake {
     }
 
     die() {
-        play_sound(death);   
+        game.grid.set(
+            this.body[this.body.length - 1].pos,
+            CELL.void);
         this.dead = true;
+        this.body
         this.body.pop();
     }
 
