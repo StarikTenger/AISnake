@@ -87,6 +87,9 @@ class Snake {
         // Animation
         AH_snake_head_enter.spawn(this.head_pos(), this.head_direction());
         AH_snake_head_leave.spawn(this.body[1].pos, this.body[1].direction);
+        AH_snake_tail_enter.spawn(
+            this.body[this.body.length - 1].pos, 
+            this.body[this.body.length - 1].direction);
 
         // Eating
         if (game.grid.get(this.head_pos()) == CELL.apple) {

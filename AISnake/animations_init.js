@@ -19,6 +19,18 @@ let AH_snake_head_leave = new AnimationHolder(
     FRAME_CNT_SNAKE
 )
 
+let AH_snake_tail_enter = new AnimationHolder(
+    tex_ + "/snake/butt_anim",
+    EXT_PNG,
+    FRAME_CNT_SNAKE
+)
+
+let AH_snake_tail_leave = new AnimationHolder(
+    tex_ + "/snake/butt_anim",
+    EXT_PNG,
+    FRAME_CNT_SNAKE
+)
+
 let AH_snake_head_leave_rot = new AnimationHolder(
     tex_ + "/snake/head/leave_rot",
     EXT_PNG,
