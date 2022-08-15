@@ -38,7 +38,7 @@ let MOUSE_Y = 100000;
 //// DRAW PREFERENCES ////
 // не ебу, зачем оно, но пусть будет
 let SCALE = 1; // 1 Cell in px
-while (64 * SCALE <= 640) {
+while (64 * SCALE <= 768) {
     SCALE += 1;
 }
 SCALE -= 1;

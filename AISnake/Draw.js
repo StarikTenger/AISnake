@@ -7,7 +7,7 @@ class Draw {
 
     loading_screen() {
         var img = getImg("textures/start.png");
-        this.ctx.drawImage(img, 0, 0, 600, 600);
+        this.ctx.drawImage(img, 0, 0, 768, 768);
     }
 
     image(texture, x, y, w, h, degrees = 0) {
