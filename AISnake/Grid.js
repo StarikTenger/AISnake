@@ -49,10 +49,14 @@ class Grid {
 
     click_action(x, y) {
         if (x < SIZE_X && y < SIZE_Y) {
-            if (this.field[x][y] == CELL.void) 
+            if (this.field[x][y] == CELL.void) {
                 this.field[x][y] = CELL.wall;
-            else if (this.field[x][y] == CELL.wall) 
+                play_sound(build);
+            }
+            else if (this.field[x][y] == CELL.wall) {
                 this.field[x][y] = CELL.void;
+                play_sound(build);
+            }
         }
     }
 

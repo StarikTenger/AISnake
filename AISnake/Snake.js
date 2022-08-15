@@ -61,7 +61,8 @@ class Snake {
     move() {
         // Check for collision
         if (this.check_obstacle_relative(DIRECTION_VECTORS[UP])) { 
-            console.log(this.body[0].pos);      
+            console.log(this.body[0].pos);
+            play_sound(death);   
             this.dead = true;
             return
         }
@@ -89,6 +90,7 @@ class Snake {
 
         // Eating
         if (game.grid.get(this.head_pos()) == CELL.apple) {
+            play_sound(eat);
             this.grow();
             game.increase_score();
             game.grid.set(this.head_pos(), CELL.void);
@@ -152,6 +154,7 @@ class Snake {
     }
 
     split(tail) {
+        play_sound(split);
         let new_snake = new Snake();
         let dir_acc = this.body[this.body.length - 1].direction;
         for (let i = 0; i < tail; i++) {
