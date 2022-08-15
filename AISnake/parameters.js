@@ -69,13 +69,13 @@ let IMG_DIRS = [
 ];
 
 let IMG_DIRS_DEAD = [
-    getImg("textures/head.png"),
-    getImg("textures/body.png"),
-    getImg("textures/body_rot_left.png"),
-    getImg("textures/head_rot_left.png"),
-    getImg("textures/butt.png"),
-    getImg("textures/body_rot_right.png"),
-    getImg("textures/head_rot_right.png")
+    getImg("textures/snake_dead/head.png"),
+    getImg("textures/snake_dead/body.png"),
+    getImg("textures/snake_dead/body_rot_left.png"),
+    getImg("textures/snake_dead/head_rot_left.png"),
+    getImg("textures/snake_dead/butt.png"),
+    getImg("textures/snake_dead/body_rot_right.png"),
+    getImg("textures/snake_dead/head_rot_right.png")
 ];
 
 let IMGS = [
