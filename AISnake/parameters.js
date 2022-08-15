@@ -63,9 +63,9 @@ let IMG_DIRS = [
 ];
 
 let IMGS = [
-    getImg("textures/floor.png"),
+    getImg("resources/textures/floor/floor.png"),
     getImg("textures/apple.png"),
-    getImg("textures/wall.png")
+    getImg("resources/textures/walls/wall.png")
 ];
 
 /*
