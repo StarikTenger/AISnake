@@ -45,18 +45,24 @@ class Draw {
         // Filling background
         this.ctx.fillStyle = "green";
         this.ctx.fillRect(0, 0, 10000, 10000);
+        
+
+        
         for (let x = 0; x < SIZE_X; x++) {
             for (let y = 0; y < SIZE_Y; y++) {
                 draw.image(IMGS[0], x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE);
             }
         }
 
-        for (let i = 0; i < game.tickable.length; i++) {
-            game.tickable[i].draw();
-        }
+        game.grid.draw();
 
+        
         for (let i = 0; i < game.animations.length; i++) {
             game.animations[i].draw();
+        }
+
+        for (let i = 0; i < game.tickable.length; i++) {
+            game.tickable[i].draw();
         }
     };
 }

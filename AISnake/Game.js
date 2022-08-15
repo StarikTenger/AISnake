@@ -3,6 +3,7 @@
 
 class Game {
     constructor() {
+        this.timer = 0;
         this.grid = new Grid();
         this.score = 0;
         this.tickable = [];
@@ -26,7 +27,7 @@ class Game {
 
     step() {
         this.grid.step();
-
+        this.timer++;
         for (let i = 0; i < this.stepebal.length; i++) {
             this.stepebal[i].step();
         }

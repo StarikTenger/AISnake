@@ -78,7 +78,26 @@ class Grid {
                 // Counting apples 
                 if (this.field[x][y] == 'apple')
                     apple_num++;
+            }
+        }
+        // Cursor handler
+        if (MOUSE_X < SIZE_X && MOUSE_Y < SIZE_Y) {
+            if (this.field[MOUSE_X][MOUSE_Y] == 'void')
+                draw.image(IMGS[3], MOUSE_X * CELL_SIZE, MOUSE_Y * CELL_SIZE, CELL_SIZE, CELL_SIZE);
+            if (this.field[MOUSE_X][MOUSE_Y] == 'wall')
+                draw.image(IMGS[4], MOUSE_X * CELL_SIZE, MOUSE_Y * CELL_SIZE, CELL_SIZE, CELL_SIZE);
+        }
 
+        // Adding apples
+        let rnd_x = random(0, SIZE_X - 1);
+        let rnd_y = random(0, SIZE_Y - 1);
+        if (apple_num < APPLE_LIMIT && this.field[rnd_x][rnd_y] == CELL.void)
+            this.field[rnd_x][rnd_y] = CELL.apple;
+    }
+
+    draw() {
+        for (let x = 0; x < SIZE_X; x++) {
+            for (let y = 0; y < SIZE_Y; y++) {
                 // Drawing grid
                 switch(this.field[x][y]) {
                     case 'void':
@@ -93,18 +112,6 @@ class Grid {
                 }
             }
         }
-        // Cursor handler
-        if (MOUSE_X < SIZE_X && MOUSE_Y < SIZE_Y) {
-            if (this.field[MOUSE_X][MOUSE_Y] == 'void')
-                draw.image(IMGS[3], MOUSE_X * CELL_SIZE, MOUSE_Y * CELL_SIZE, CELL_SIZE, CELL_SIZE);
-            if (this.field[MOUSE_X][MOUSE_Y] == 'wall')
-                draw.image(IMGS[4], MOUSE_X * CELL_SIZE, MOUSE_Y * CELL_SIZE, CELL_SIZE, CELL_SIZE);
-        }
-        // Adding apples
-        let rnd_x = random(0, SIZE_X - 1);
-        let rnd_y = random(0, SIZE_Y - 1);
-        if (apple_num < APPLE_LIMIT && this.field[rnd_x][rnd_y] == CELL.void)
-            this.field[rnd_x][rnd_y] = CELL.apple;
     }
 
 }

@@ -14,6 +14,8 @@ let APPLE_LIMIT = 5;
 
 let SNAKE_CRITICAL_LENGTH = 10;
 let SNAKE_TAIL_DROP_LENGTH = 5;
+let SNAKE_STARVATION_LIMIT = 32;
+let SNAKE_STARVATION_DEATH_LIMIT = 64;
 
 let EPS = 0.0001;
 
@@ -72,6 +74,8 @@ let IMGS = [
     getImg("textures/yellow_square.png"),
     getImg("textures/red_square.png")
 ];
+
+let IMG_STARVATION = getImg("textures/starvation.png");
 
 /*
 // Endgame screens

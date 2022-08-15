@@ -1,7 +1,8 @@
 class Snake {
     constructor() {        
         this.body = [];
-        this.dead = false;        
+        this.starvation = 0;
+        this.dead = false;     
     }
 
     // Init example snake
@@ -64,10 +65,9 @@ class Snake {
     move() {
         // Check for collision
         if (this.check_obstacle_relative(DIRECTION_VECTORS[UP])) { 
-            console.log(this.body[0].pos);
             play_sound(death);   
             this.dead = true;
-            return
+            return;
         }
         
         // Remove shadow
@@ -97,6 +97,13 @@ class Snake {
             this.grow();
             //game.increase_score(); // scores for eating apple
             game.grid.set(this.head_pos(), CELL.void);
+            this.starvation = 0;
+        }
+        this.starvation ++;
+        if (this.starvation > SNAKE_STARVATION_DEATH_LIMIT) {
+            play_sound(death);   
+            this.dead = true;
+            return;
         }
 
         AH_snake_tail_enter.spawn(
@@ -275,6 +282,27 @@ class Snake {
                     draw.rect(this.body[i].pos.x * CELL_SIZE, this.body[i].pos.y * CELL_SIZE, CELL_SIZE, CELL_SIZE, "rgba(255, 255, 255, 0.5)");
                 }
             }
+        }
+
+
+        let s_delta = mult(
+            DIRECTION_VECTORS[this.body[0].direction],
+            ((game.timer + 1) % 16) / 16);
+        let s_pos = plus(
+            this.body[0].pos,
+            s_delta);
+        let d_delta = new Vec2(0, 0);
+        if (this.head_direction() == RIGHT) d_delta = new Vec2(0, -0.5);
+        if (this.head_direction() == LEFT) d_delta = new Vec2(1, -0.5);
+        if (this.head_direction() == UP) d_delta = new Vec2(0.5, 0);
+        if (this.head_direction() == DOWN) d_delta = new Vec2(0.5, -1);
+
+        s_pos = plus(s_pos, d_delta)
+        if (!this.dead && this.starvation >= SNAKE_STARVATION_LIMIT) {
+            draw.image(IMG_STARVATION,
+                (s_pos.x) * CELL_SIZE, 
+                (s_pos.y) * CELL_SIZE, 
+                CELL_SIZE, CELL_SIZE);
         }
 
         // CTX.beginPath(); 
