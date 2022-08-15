@@ -16,8 +16,6 @@ class Game {
         this.animations = [];
 
         this.all_dead = false;
-
-        this.RELOAD = false;
     }
     
     increase_score() {

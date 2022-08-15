@@ -7,6 +7,7 @@ let DT = 0.020; // Tick time in seconds
 let TICK_STEPS_NUM = 16; // number of steps in one step
 let SECONDS_IN_TICK = DT * TICK_STEPS_NUM;
 let ANM_CYCLE_TIME = SECONDS_IN_TICK;
+let RELOAD = true;
 
 let CELL_SIZE = 4;
 let TEXTURE_SIZE = 2;
