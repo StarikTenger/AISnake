@@ -1,5 +1,5 @@
 # SnAIkeS
-Submission for [Wowie Jam 4.0](https://itch.io/jam/wowie-jam-4) 
+Submission to [Wowie Jam 4.0](https://itch.io/jam/wowie-jam-4) 
 
 You can play it [here](https://stariktenger.itch.io/snaike)
 
